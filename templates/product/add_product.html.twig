@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <div class="d-flex justify-content-center">
+        {{ form_start(form) }}
+
+            {{form_row(form.name)}}
+            {{form_row(form.price)}}
+            {{form_row(form.description)}}
+            <div class="d-flex align-items-center">
+                {{form_row(form.image)}}
+                 {% if isUpdate %}
+                    {% if product.image %} <img src="{{ '/assets/images/' ~ product.image}}" style="width: 50px; height: 50px;" class=" rounded px-2"/>{% endif %}
+                {% endif %}
+            </div>
+            {{form_row(form.category)}}
+            <a href="/category/add" class="mb-3"> Nouvelle Catégorie ? </a>
+             {% if isUpdate %}
+                {{form_row(form.save, { 'label': 'Update', 'attr': {'class': 'btn btn-warning w-100 mt-3'}  })}}
+            {% else %}
+                {{form_row(form.save, {'attr' : {'class' : 'btn btn-primary w-100 mt-3'}})}}
+            {% endif %}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

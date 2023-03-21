@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+<div class="container d-flex justify-content-center gap-3 row mt-4 ">
+    {% if app.session.flashBag.has('msg') %}
+        <div class="alert alert-danger text-center" role="alert">
+            {% for msg in app.session.flashBag.get('msg') %}
+                {{ msg }}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if app.session.flashBag.has('fail_del') %}
+        <div class="alert alert-danger text-center" role="alert">
+            {% for msg in app.session.flashBag.get('fail_del') %}
+                {{ msg }}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if app.session.flashBag.has('success_del') %}
+        <div class="alert alert-warning text-center" role="alert">
+            {% for msg in app.session.flashBag.get('success_del') %}
+                {{ msg }}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if app.session.flashBag.has('fail_slug') %}
+        <div class="alert alert-danger text-center" role="alert">
+            {% for msg in app.session.flashBag.get('fail_slug') %}
+                {{ msg }}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% for product in products %}
+    <div class=" p-3 border rounded-3 d-flex flex-column col-md-4" style="width:250px">
+        <div class="mb-2">
+            <img src="assets/images/{{product.image}}" alt="{{product.name}}" class="w-100" style="height: 150px;">
+        </div>
+        <div class="d-flex justify-content-between">
+            <h3>{{product.name | capitalize}}</h3>
+            <span class="text-danger">{{product.price|format_currency('USD')}}</span>
+        </div>
+        <p class="">{{product.description}}</p>
+        <div class="mt-auto">
+            <a href="/product/{{product.slug}}" class="btn btn-warning ">More Details</a>
+            <a href="/product/del/{{product.id}}" class="btn btn-danger w-25"><i class='bx bx-trash'></i></a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

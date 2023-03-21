@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <div class="d-flex row justify-content-center m-4">
+       <div class="col-7">
+        <img src="/assets/images/{{product.image}}" alt="{{product.name}}"
+        class="w-100">
+       </div>
+       <div class="col-5 d-flex flex-column justify-content-start p-3">
+        <div class="d-flex px-2 justify-content-between">
+            <h2 class="fs-3 fw-bold text-capitalize">{{product.name}}</h2>
+            <span class="text-danger fw-bolder">{{product.price | format_currency('USD')}}</span>
+        </div>
+        <span class="btn btn-secondary fw-bold text-uppercase w-25">{{product.category.name }}</span>
+        <p class="py-4">{{product.description}}</p>
+        <a href="" class="btn btn-success w-25 mt-auto align-self-end">Add <i class='bx bxs-shopping-bag'></i></a>
+       </div>
+    </div>
+{% endblock %}
